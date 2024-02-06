@@ -13,7 +13,7 @@
         </header>
         <div id="wrapper">
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="picnic.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes dont
@@ -41,12 +41,16 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Etape 4: à vous de jouer
                 //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
+                while ($userId = $lesInformations->fetch_assoc()){
                 ?>
                 <article>
-                    <img src="user.jpg" alt="blason"/>
-                    <h3>Alexandra</h3>
-                    <p>id:654</p>                    
+                    <img src="cat.jpg" alt="blason"/>
+                    <a href="wall.php?user_id=<?php echo $userId['id']; ?>">
+                        <h3><?php echo $userId['alias'] ?></h3>
+                    </a>
+                    <p>Id : <?php echo $userId['id'] ?></p>                    
                 </article>
+                <?php }?>
             </main>
         </div>
     </body>

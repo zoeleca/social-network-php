@@ -41,7 +41,7 @@
             $user = $lesInformations->fetch_assoc();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
             ?>
-            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+            <img src="picnic.jpg" alt="Portrait de l'utilisatrice" />
             <section>
                 <h3>Présentation</h3>
                 <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
@@ -77,32 +77,7 @@
             while ($post = $lesInformations->fetch_assoc()) {
             ?>
                 <article>
-                    <h3>
-                        <time> <?php $date = new DateTime($post['created']);
-                        /* :: = . en js ; critère format françasi  */
-                                $timeZone = (iterator_to_array(IntlTimeZone::createEnumeration('FR')));
-                                $tz = reset($timeZone);
-                                $formatter = IntlDateFormatter::create(
-                                    'fr_FR',
-                                    /*date */
-                                    IntlDateFormatter::FULL,
-                                    /*heure */
-                                    IntlDateFormatter::SHORT,
-                                    $tz,
-                                    /*calendrier utilisé */
-                                    IntlDateFormatter::GREGORIAN
-                                ); ?>
-                            <?php echo ucwords($formatter->format($date)) ?>
-                        </time>
-                    </h3>
-                    <address><?php echo $post['author_name'] ?></address>
-                    <div>
-                        <p><?php echo $post['content'] ?></p>
-                    </div>
-
-                    <?php
-                    include 'footer.php'
-                    ?>
+                <?php include 'article.php'?>
 
                 </article>
             <?php } ?>
