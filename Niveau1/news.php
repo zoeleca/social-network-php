@@ -51,6 +51,7 @@
                 // si vous ne la comprenez pas c'est normal, passez, on y reviendra
                 $laQuestionEnSql = "
                     SELECT posts.content,
+                    posts.user_id,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  

@@ -17,7 +17,7 @@
         </time>
     </h3>
     
-    <address><a href="wall.php?user_id=<?php echo $userId; ?>"><?php echo $post['author_name'] ?> </a></address>
+    <address><a href="wall.php?user_id=<?php echo $post['user_id']; ?>"><?php echo $post['author_name'] ?> </a></address>
     <div>
         <p><?php echo $post['content'] ?></p>
     </div>
