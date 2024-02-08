@@ -79,6 +79,10 @@
                         <dd><?php echo $user['totalgiven'] ?></dd>
                         <dt>Nombre de "J'aime" reçus</dt>
                         <dd><?php echo $user['totalreceived'] ?></dd>
+                        <br>
+                    <form action="logout.php" method="post">
+                        <button type="submit" class="btn">Logout</button>
+                    </form>
                     </dl>
 
                 </article>

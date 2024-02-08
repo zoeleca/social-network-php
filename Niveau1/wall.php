@@ -14,16 +14,7 @@
         ?>
     </header>
     <div id="wrapper">
-        
         <?php
-        /*session_start();
-        $userId = isset($_SESSION['connected_id']) ? $_SESSION['connected_id'] : null;
-
-            if ($_SESSION['connected_id'] === NULL) {
-                header("Location: login.php");
-                echo 'You must log in first';
-                exit();
-            }*/
         /**
          * Etape 1: Le mur concerne un utilisateur en particulier
          * La première étape est donc de trouver quel est l'id de l'utilisateur
@@ -31,20 +22,20 @@
          * Documentation : https://www.php.net/manual/fr/reserved.variables.get.php
          * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
          */
+        $userId = intval($_GET['user_id']);
         ?>
         <?php
         /**
          * Etape 2: se connecter à la base de donnée
          */
-                ?>
+        $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+        ?>
 
         <aside>
             <?php
             /**
              * Etape 3: récupérer le nom de l'utilisateur
              */
-            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-
             $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
             $lesInformations = $mysqli->query($laQuestionEnSql);
             $user = $lesInformations->fetch_assoc();
@@ -59,6 +50,9 @@
             </section>
         </aside>
         <main>
+            <article>
+              <?php include 'postmessage.php'?>
+            </article>
             <?php
             /**
              * Etape 3: récupérer tous les messages de l'utilisatrice
@@ -86,7 +80,7 @@
             while ($post = $lesInformations->fetch_assoc()) {
             ?>
                 <article>
-                <?php include 'article.php'?>
+                    <?php include 'article.php' ?>
 
                 </article>
             <?php } ?>

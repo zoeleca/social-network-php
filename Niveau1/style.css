@@ -164,3 +164,24 @@ header img {
     border-radius: 50%;
     border: 15px;
 }
+
+.btn{
+    font-size: 15px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(234, 110, 135);
+    border: 10px solid rgb(234, 110, 135) ;
+    justify-content: center;
+    align-items: right;
+    border: 10px;
+}
+
+.btn:hover{
+    background-color: rgb(234, 110, 135) ;
+    font-size: 15px;
+    color: #fff;
+    justify-content: center;
+    align-items: right;
+    border: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
