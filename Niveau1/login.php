@@ -11,7 +11,7 @@ session_start();
     </head>
     <body>
         <header>
-          <?php include 'header.php' ?>
+          <?php // include 'header.php' ?>
         </header>
 
         <div id="wrapper" >
@@ -69,6 +69,8 @@ session_start();
                             // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                             $_SESSION['connected_id']=$user['id'];
+                            $id = $user['id'];
+                            header("Location: wall.php?user_id=$id");
                         }
                     }
                     ?>                     
