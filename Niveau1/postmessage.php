@@ -32,7 +32,7 @@
 
 
                     //Etape 3 : Petite sécurité
-                    // pour éviter les injection sql : https://www.w3schools.com/sql/sql_injection.asp
+                    // pour éviter les injections sql : https://www.w3schools.com/sql/sql_injection.asp
                     $authorId = intval($mysqli->real_escape_string($authorId));
                     $postContent = $mysqli->real_escape_string($postContent);
                     //Etape 4 : construction de la requete
