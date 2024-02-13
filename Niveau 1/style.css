@@ -4,8 +4,8 @@ body{
     background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(background.jpg);
 }
 
-a{text-decoration: none; color:black;}
-a:hover{text-decoration: underline;}
+a{text-decoration: none; color:rgb(234, 110, 135);}
+a:hover{text-decoration: underline; color:rgb(255, 255, 255); background-color: rgb(242, 144, 167);}
 
 body>header{
     background-image: linear-gradient(rgb(255, 255, 255, 0.05),rgb(255, 255, 255, 0.05)), url(velvet_background.jpg);
@@ -13,33 +13,36 @@ body>header{
     width:80em;
     margin:0 auto 2em auto;    
     padding:0;
+    border: 10px;
+    border-radius: 10px;
 
 }
 body>header img{
     height:5em;
 }
 body>header #menu {
+    background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
     display:flex;
     width:50%;
     align-items: stretch;
-    border-left: 1px solid #99b;
+    border-left: 1px solid rgb(255, 255, 255);
 }
 body>header #menu a{
     flex:1;
     text-align: center;
     padding-top:2em;
-    border-right: 1px solid #99b;
+    border-right: 1px solid rgb(255, 255, 255);
 }
 body>header a:hover
 {
-    background-color: #88325d;
+    background-color: rgb(242, 144, 167);
 }
 body>header ul{list-style: none;}
 body>header #user
 {
     margin-left: auto;
     flex:0.2;
-    border-left: 1px solid #99b;
+    border-left: 1px solid rgb(255, 255, 255);
 }
 body>header #user>a{
     display:block;
@@ -62,7 +65,7 @@ body>header #user ul li a{
     display:block;
     width:10em;
     padding:1em;
-    border-bottom: 1px solid #99b;
+    border: 1px solid rgb(234, 110, 135);
 }
 body>header #user:hover ul{
     display:block;
