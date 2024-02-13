@@ -21,7 +21,7 @@
     <div>
         <p><?php echo $post['content'] ?></p>
     </div>
-    <?php include 'likenumber.php' ?>
+zz
     <footer>
         <!-- debut du form pour les likes -->
         <form action="likenumber.php" method="post">

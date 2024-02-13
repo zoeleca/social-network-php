@@ -1,6 +1,5 @@
 <?php
 // Step 1 - check if the form was submitted 
-/*
 if (isset($post['like_number'])) {
     $userId = $_SESSION['connected_id'];
     $postId = intval($post['id']);
@@ -27,4 +26,3 @@ if (isset($post['like_number'])) {
 }
 
 ?>
-*/
