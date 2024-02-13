@@ -1,11 +1,11 @@
 body{
-    /* background-color: #f700d6; */
-    font-family: Arial;
-    background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(background.jpg);
+    background-color: rgb(230, 206, 214);
+    font-family: 'roboto';
+    color: rgba(96, 33, 46, 0.859);
 }
 
-a{text-decoration: none; color:black;}
-a:hover{text-decoration: underline;}
+a{text-decoration: none; color:rgb(234, 110, 135);}
+a:hover{text-decoration: underline; color:rgb(255, 255, 255); background-color: rgb(242, 144, 167);}
 
 body>header{
     background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
@@ -13,33 +13,36 @@ body>header{
     width:80em;
     margin:0 auto 2em auto;    
     padding:0;
+    border: 10px;
+    border-radius: 10px;
 
 }
 body>header img{
     height:5em;
 }
 body>header #menu {
+    background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
     display:flex;
     width:50%;
     align-items: stretch;
-    border-left: 1px solid #99b;
+    border-left: 1px solid rgb(255, 255, 255);
 }
 body>header #menu a{
     flex:1;
     text-align: center;
     padding-top:2em;
-    border-right: 1px solid #99b;
+    border-right: 1px solid rgb(255, 255, 255);
 }
 body>header a:hover
 {
-    background-color: #88325d;
+    background-color: rgb(242, 144, 167);
 }
 body>header ul{list-style: none;}
 body>header #user
 {
     margin-left: auto;
     flex:0.2;
-    border-left: 1px solid #99b;
+    border-left: 1px solid rgb(255, 255, 255);
 }
 body>header #user>a{
     display:block;
@@ -53,8 +56,8 @@ body>header #user ul{
     padding:0;
     margin:0;
     margin-left:-5em;
-    background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
-    border: 1px solid #99b;
+    background-color: #fff;
+    border: 1px solid rgb(234, 110, 135);
 
     z-index: 1;
 }
@@ -62,7 +65,7 @@ body>header #user ul li a{
     display:block;
     width:10em;
     padding:1em;
-    border-bottom: 1px solid #99b;
+    border: 1px solid rgb(234, 110, 135);
 }
 body>header #user:hover ul{
     display:block;
@@ -75,7 +78,7 @@ body>header #user:hover ul{
     margin:0 auto 2em auto;
 }
 #wrapper aside{
-    background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
+    background-color: #fff;
     flex:1;
     padding:1em;
     border-radius: 1em;    
@@ -93,7 +96,7 @@ body>header #user:hover ul{
     overflow-y:  scroll;
 }
 #wrapper main article{
-    background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
+    background-color: #fff;
     padding:1em;
     margin-bottom: 1em ;
     border-radius: 1em;
@@ -154,4 +157,32 @@ body>header #user:hover ul{
 
 pre{
     color:#aaa;
+}
+
+header img {
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 15px;
+}
+
+.btn{
+    font-size: 15px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(234, 110, 135);
+    border: 10px solid rgb(234, 110, 135) ;
+    justify-content: center;
+    align-items: right;
+    border: 10px;
+}
+
+.btn:hover{
+    background-color: rgb(234, 110, 135) ;
+    font-size: 15px;
+    color: #fff;
+    justify-content: center;
+    align-items: right;
+    border: 10px;
+    border-radius: 10px;
+    cursor: pointer;
 }
