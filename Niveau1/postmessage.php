@@ -55,8 +55,6 @@
                 ?>
                 <form action="wall.php?user_id=<?php echo $userId ?>" method="post">
                     <input type='hidden' name='auteur' value='<?php echo $userId?>'>
-
-
                     <dt><label for='message'>Message</label></dt>
                     <dd><textarea name='message'></textarea></dd>
                     </dl>
