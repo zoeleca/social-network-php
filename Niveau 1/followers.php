@@ -7,13 +7,21 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <?php
-          include 'header.php';
-        ?>
+        <header>
+        <?php include 'header.php'
+            ?>
+        </header>
         <div id="wrapper">          
-              <?php
-                include 'aside.php';
-              ?>
+            <aside>
+                <img src = "picnic.jpg" alt = "Portrait de l'utilisatrice"/>
+                <section>
+                    <h3>Présentation</h3>
+                    <p>Sur cette page vous trouverez la liste des personnes qui
+                        suivent les messages de l'utilisatrice
+                        n° <?php echo intval($_GET['user_id']) ?></p>
+
+                </section>
+            </aside>
             <main class='contacts'>
                 <?php
                 // Etape 1: récupérer l'id de l'utilisateur
@@ -31,16 +39,16 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Etape 4: à vous de jouer
                 //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
-
-
-                while ($userId = $lesInformations->fetch_assoc()) {  
-                ?>
+                while ($userId = $lesInformations->fetch_assoc()){
+                    ?>
                 <article>
-                <img src="user.jpg" alt="blason" />
-                <h3><?php echo $userId['alias'] ?></h3>
-                <p><?php echo $userId['id'] ?></p>
+                    <img src="cat.jpg" alt="blason"/>
+                    <a href="wall.php?user_id=<?php echo $userId['id']; ?>">
+                        <h3><?php echo $userId['alias'] ?></h3>
+                    </a>
+                    <p>Id : <?php echo $userId['id'] ?></p>
                 </article>
-                <?php } ?>
+                <?php }?>
             </main>
         </div>
     </body>

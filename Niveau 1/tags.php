@@ -1,59 +1,64 @@
 <!doctype html>
 <html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>ReSoC - Les message par mot-clé</title> 
+        <meta name="author" content="Julien Falconnet">
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <header>
+        <?php include 'header.php'
+            ?>
+        </header>
+        <div id="wrapper">
+            <?php
+            /**
+             * Cette page est similaire à wall.php ou feed.php 
+             * mais elle porte sur les mots-clés (tags)
+             */
+            /**
+             * Etape 1: Le mur concerne un mot-clé en particulier
+             */
+            $tagId = intval($_GET['tag_id']);
+            ?>
+            <?php
+            /**
+             * Etape 2: se connecter à la base de donnée
+             */
+            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+            ?>
 
-<head>
-  <meta charset="utf-8">
-  <title>ReSoC - Les message par mot-clé</title>
-  <meta name="author" content="Julien Falconnet">
-  <link rel="stylesheet" href="style.css" />
-</head>
+            <aside>
+                <?php
+                /**
+                 * Etape 3: récupérer le nom du mot-clé
+                 */
+                $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
+                $lesInformations = $mysqli->query($laQuestionEnSql);
+                $tag = $lesInformations->fetch_assoc();
+                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
+              //  echo "<pre>" . print_r($tag, 1) . "</pre>";
+                ?>
+                <img src="picnic.jpg" alt="Portrait de l'utilisatrice"/>
+                <section>
+                    <h3>Présentation</h3>
+                    <p>Sur cette page vous trouverez les derniers messages comportant
+                        le mot-clé <strong><em>#<?php echo $tag['label']?></em></strong>
 
-<body>
-  <?php
-  include 'header.php';
-  ?>
-  <div id="wrapper">
-    <?php
-    /**
-     * Cette page est similaire à wall.php ou feed.php 
-     * mais elle porte sur les mots-clés (tags)
-     */
-    /**
-     * Etape 1: Le mur concerne un mot-clé en particulier
-     */
-    $tagId = intval($_GET['tag_id']);
-    ?>
-    <?php
-    /**
-     * Etape 2: se connecter à la base de donnée
-     */
-    $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-    ?>
+                        (n° <?php echo $tagId ?>)
+                    </p>
 
-    <aside>
-      <?php
-      /**
-       * Etape 3: récupérer le nom du mot-clé
-       */
-      $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
-      $lesInformations = $mysqli->query($laQuestionEnSql);
-      $tag = $lesInformations->fetch_assoc();
-      //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-      ?>
-      <img src="https://v5.airtableusercontent.com/v3/u/25/25/1707235200000/xx8byJW1YvWxL-PWwgGRIw/CZdtN-GIG8A2bTVlnUwaPWWFWdsDRX4IK7z3djaHlPvT5lzAUY44wCEfO1Hl0FnaVmg4Z4wW8OZI-SDwfeJtqluqcLGJOHqK7jSWROHWv0D6tn-bGpnjDnvQfwofdt6W39BA_H7ybt7xwp0gISa3gw/q9QMgwPEyUg3h06VIN2NyBBpoit__VWERO3XFvfcmIU" alt="Portrait de l'utilisatrice" />
-            <section>
-                <h3>Présentation</h3>
-                <p>Sur cette page vous trouverez les derniers messages comportant
-                    le mot-clé #<strong><i><?php echo $tagId ?></i></strong>
-                </p>
-    </aside>
-    <main>
-      <?php
-      /**
-       * Etape 3: récupérer tous les messages avec un mot clé donné
-       */
-      $laQuestionEnSql = "
+                </section>
+            </aside>
+            <main>
+                <?php
+                /**
+                 * Etape 3: récupérer tous les messages avec un mot clé donné
+                 */
+                $laQuestionEnSql = "
                     SELECT posts.content,
+                    posts.user_id,
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
@@ -68,44 +73,29 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-      $lesInformations = $mysqli->query($laQuestionEnSql);
-      if (!$lesInformations) {
-        echo ("Échec de la requete : " . $mysqli->error);
-      }
+                $lesInformations = $mysqli->query($laQuestionEnSql);
+                if ( ! $lesInformations)
+                {
+                    echo("Échec de la requete : " . $mysqli->error);
+                }
 
-      /**
-       * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-       */
-      while ($post = $lesInformations->fetch_assoc()) {
-        $date = new DateTime($post['created']);
-        $timeZone = (iterator_to_array(IntlTimeZone::createEnumeration('FR')));
-        $tz = reset($timeZone);
-        $formatter = IntlDateFormatter::create(
-          'fr_FR',
-          IntlDateFormatter::FULL,
-          IntlDateFormatter::SHORT,
-          $tz,
-          IntlDateFormatter::GREGORIAN
-        );
+                /**
+                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+                 */
+                while ($post = $lesInformations->fetch_assoc())
+                {
 
-        ?>
-        <article>
-          <h3>
-            <time><?php echo ucwords($formatter->format($date)) ?></time>
-          </h3>
-          <address><?php echo $post['author_name'] ?></address>
-          <div>
-            <p><?php echo $post['content'] ?></p>
-          </div>
-          <?php
-          include 'footer.php';
-          ?>
-        </article>
-      <?php } ?>
+                    ?>                
+                    <article>
+                       <?php include 'article.php'?>
+                    </article>
+                <?php } ?>
 
+                <?php 
+                
+                ?>
 
-    </main>
-  </div>
-</body>
-
+            </main>
+        </div>
+    </body>
 </html>

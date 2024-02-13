@@ -2,58 +2,60 @@
 <html lang="fr">
 
 <head>
-  <meta charset="utf-8">
-  <title>ReSoC - Mur</title>
-  <meta name="author" content="Julien Falconnet">
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8">
+    <title>ReSoC - Mur</title>
+    <meta name="author" content="Julien Falconnet">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <?php
-  include 'header.php';
-  ?>
-  <div id="wrapper">
-    <?php
-    /**
-     * Etape 1: Le mur concerne un utilisateur en particulier
-     * La première étape est donc de trouver quel est l'id de l'utilisateur
-     * Celui ci est indiqué en parametre GET de la page sous la forme user_id=...
-     * Documentation : https://www.php.net/manual/fr/reserved.variables.get.php
-     * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
-     */
-    $userId = intval($_GET['user_id']);
-    ?>
-    <?php
-    /**
-     * Etape 2: se connecter à la base de donnée
-     */
-    $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-    ?>
+    <header>
+        <?php include 'header.php'
+        ?>
+    </header>
+    <div id="wrapper">
+        <?php
+        /**
+         * Etape 1: Le mur concerne un utilisateur en particulier
+         * La première étape est donc de trouver quel est l'id de l'utilisateur
+         * Celui ci est indiqué en parametre GET de la page sous la forme user_id=...
+         * Documentation : https://www.php.net/manual/fr/reserved.variables.get.php
+         * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
+         */
+        $userId = intval($_GET['user_id']);
 
-    <aside>
-      <?php
-      /**
-       * Etape 3: récupérer le nom de l'utilisateur
-       */
-      $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
-      $lesInformations = $mysqli->query($laQuestionEnSql);
-      $user = $lesInformations->fetch_assoc();
-      //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-      ?>
-      <?php
-        include 'aside.php';
-      ?>
-        </p>
-      </section>
-    </aside>
-    </aside>
-    <main>
-      <?php
-      /**
-       * Etape 3: récupérer tous les messages de l'utilisatrice
-       */
-      $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, 
+        $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+        ?>
+
+        <aside>
+            <?php
+            /**
+             * Etape 3: récupérer le nom de l'utilisateur
+             */
+            $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $user = $lesInformations->fetch_assoc();
+            //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
+            ?>
+            <img src="picnic.jpg" alt="Portrait de l'utilisatrice" />
+            <section>
+                <h3>Présentation</h3>
+                <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
+                    (n° <?php echo $userId ?>)
+                </p>
+            </section>
+            <?php include 'followbtn.php' ?>
+        </aside>
+        <main>
+            <article>
+              <?php include 'postmessage.php'?>
+            </article>
+            <?php
+            /**
+             * Etape 3: récupérer tous les messages de l'utilisatrice
+             */
+            $laQuestionEnSql = "
+                    SELECT posts.content, posts.created, users.alias as author_name, posts.id, posts.user_id,
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
@@ -64,51 +66,25 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-      $lesInformations = $mysqli->query($laQuestionEnSql);
-      if (!$lesInformations) {
-        echo ("Échec de la requete : " . $mysqli->error);
-      }
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
 
-      /**
-       * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-       */
-      while ($post = $lesInformations->fetch_assoc()) {
+            /**
+             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+             */
+            while ($post = $lesInformations->fetch_assoc()) {
+            ?>
+                <article>
+                    <?php include 'article.php' ?>
 
-        $date = new DateTime($post['created']);
-        $timeZone = (iterator_to_array(IntlTimeZone::createEnumeration('FR')));
-        $tz = reset($timeZone);
-        $formatter = IntlDateFormatter::create(
-          'fr_FR',
-          IntlDateFormatter::FULL,
-          IntlDateFormatter::SHORT,
-          $tz,
-          IntlDateFormatter::GREGORIAN
-        );
-
-        ?>
-        <article>
-          <h3>
-            <time datetime='2020-02-01 11:12:13'>
-              <?php echo ucwords($formatter->format($date)) ?>
-            </time>
-          </h3>
-          <address>
-            <?php echo $post['author_name'] ?>
-          </address>
-          <div>
-            <p>
-              <?php echo $post['content'] ?>
-            </p>
-          </div>
-          <?php
-          include 'footer.php';
-          ?>
-        </article>
-      <?php } ?>
+                </article>
+            <?php } ?>
 
 
-    </main>
-  </div>
+        </main>
+    </div>
 </body>
 
 </html>

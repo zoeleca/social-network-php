@@ -1,58 +1,65 @@
 <!doctype html>
 <html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>ReSoC - Flux</title>         
+        <meta name="author" content="Julien Falconnet">
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <header>
+        <?php include 'header.php'
+            ?>
+        </header>
+        <div id="wrapper">
+            <?php
+            /**
+             * Cette page est TRES similaire à wall.php. 
+             * Vous avez sensiblement à y faire la meme chose.
+             * Il y a un seul point qui change c'est la requete sql.
+             */
+            /**
+             * Etape 1: Le mur concerne un utilisateur en particulier
+             */
+            $userId = intval($_GET['user_id']);
+            ?>
+            <?php
+            /**
+             * Etape 2: se connecter à la base de donnée
+             */
+            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+            ?>
 
-<head>
-  <meta charset="utf-8">
-  <title>ReSoC - Flux</title>
-  <meta name="author" content="Julien Falconnet">
-  <link rel="stylesheet" href="style.css" />
-</head>
+            <aside>
+                <?php
+                /**
+                 * Etape 3: récupérer le nom de l'utilisateur
+                 */
+                $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
+                $lesInformations = $mysqli->query($laQuestionEnSql);
+                $user = $lesInformations->fetch_assoc();
+                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
+                ?>
+                <img src="picnic.jpg" alt="Portrait de l'utilisatrice"/>
+                <section>
+                    <h3>Présentation</h3>
+                    <p>Sur cette page vous trouverez tous les message des utilisatrices
+                        auxquel est abonnée l'utilisatrice <?php echo $user['alias']?>
+                        (n° <?php echo $userId ?>)
+                    </p>
 
-<body>
-  <?php
-  include 'header.php';
-  ?>
-  <div id="wrapper">
-    <?php
-    /**
-     * Cette page est TRES similaire à wall.php. 
-     * Vous avez sensiblement à y faire la meme chose.
-     * Il y a un seul point qui change c'est la requete sql.
-     */
-    /**
-     * Etape 1: Le mur concerne un utilisateur en particulier
-     */
-    $userId = intval($_GET['user_id']);
-    ?>
-    <?php
-    /**
-     * Etape 2: se connecter à la base de donnée
-     */
-    $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-    ?>
-
-    <aside>
-      <?php
-      /**
-       * Etape 3: récupérer le nom de l'utilisateur
-       */
-      $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
-      $lesInformations = $mysqli->query($laQuestionEnSql);
-      $user = $lesInformations->fetch_assoc();
-      //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-      ?>
-      <?php
-      include 'aside.php';
-      ?>
-    </aside>
-    <main>
-      <?php
-      /**
-       * Etape 3: récupérer tous les messages des abonnements
-       */
-      $laQuestionEnSql = "
+                </section>
+            </aside>
+            <main>
+                <?php
+                /**
+                 * Etape 3: récupérer tous les messages des abonnements
+                 */
+                $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
+                    posts.user_id,
+                    posts.id,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -66,57 +73,29 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-      $lesInformations = $mysqli->query($laQuestionEnSql);
-      if (!$lesInformations) {
-        echo ("Échec de la requete : " . $mysqli->error);
-      }
+                $lesInformations = $mysqli->query($laQuestionEnSql);
+                if ( ! $lesInformations)
+                {
+                    echo("Échec de la requete : " . $mysqli->error);
+                }
 
-      while ($user = $lesInformations->fetch_assoc()) {
-        /**
-         * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-         * A vous de retrouver comment faire la boucle while de parcours...
-         */
-        $date = new DateTime($user['created']);
-        $timeZone = (iterator_to_array(IntlTimeZone::createEnumeration('FR')));
-        $tz = reset($timeZone);
-        $formatter = IntlDateFormatter::create(
-          'fr_FR',
-          IntlDateFormatter::FULL,
-          IntlDateFormatter::SHORT,
-          $tz,
-          IntlDateFormatter::GREGORIAN
-        );
+                /**
+                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+                 * A vous de retrouver comment faire la boucle while de parcours...
+                 */
+                while ($post = $lesInformations->fetch_assoc() or $userId = $lesInformations->fetch_assoc())
+                {
+                ?>           
 
-
-        ?>
-        <article>
-          <h3>
-            <time datetime='2020-02-01 11:12:13'>
-              <?php echo ucwords($formatter->format($date)) ?>
-            </time>
-          </h3>
-          <address>
-            <?php echo $user['author_name'] ?>
-          </address>
-          <div>
-            <p>
-              <?php echo $user['content'] ?>
-            </p>
-          </div>
-          <footer>
-            <small>♥
-              <?php echo $user['like_number'] ?>
-            </small>
-            <a href="">
-              <?php echo $user['taglist'] ?>
-            </a>,
-          </footer>
-        </article>
-      <?php } ?>
+                <article>
+                   <?php include 'article.php' ?>
+                </article>
+                <?php
+                }// et de pas oublier de fermer ici vote while
+                ?>
 
 
-    </main>
-  </div>
-</body>
-
+            </main>
+        </div>
+    </body>
 </html>
