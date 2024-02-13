@@ -1,5 +1,6 @@
 <?php
 // Step 1 - check if the form was submitted 
+/*
 if (isset($post['like_number'])) {
     $userId = $_SESSION['connected_id'];
     $postId = intval($post['id']);
@@ -16,13 +17,14 @@ if (isset($post['like_number'])) {
     . "(id, user_id, post_id) "
     . "VALUES (NULL, $userId, $postId );";
 
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+
     $ok = $mysqli->query($SQL);
     if (!$ok) {
         echo "Impossible de like " . $mysqli->error;
     } else {
         echo "liked"  ;
     }
-
+    header("Location: " . $_SERVER['HTTP_REFERER']);
 }
 
-?>
