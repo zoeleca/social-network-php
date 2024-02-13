@@ -25,7 +25,7 @@
 zz
     <footer>
         <!-- debut du form pour les likes -->
-        <form action="likenumber.php" method="post">
+        <form action="like.php" method="post">
             <button type= 'submit'>♥ <?php echo $post['like_number'] ?></button>
         </form>
         <a href=""><?php echo $post['taglist'] ?></a>
