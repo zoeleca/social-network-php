@@ -1,5 +1,5 @@
 body{
-    /* background-color: #f700d6; */
+    color:black;
     font-family: Arial;
     background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(background.jpg);
 }
@@ -8,7 +8,7 @@ a{text-decoration: none; color:black;}
 a:hover{text-decoration: underline;}
 
 body>header{
-    background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
+    background-image: linear-gradient(rgb(255, 255, 255, 0.05),rgb(255, 255, 255, 0.05)), url(velvet_background.jpg);
     display:flex;
     width:80em;
     margin:0 auto 2em auto;    
@@ -53,9 +53,9 @@ body>header #user ul{
     padding:0;
     margin:0;
     margin-left:-5em;
-    background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
+    background-image: linear-gradient(rgb(255, 255, 255, 0.05),rgb(255, 255, 255, 0.05)), url(goldwhite.jpg);
     border: 1px solid #99b;
-
+    color:black;
     z-index: 1;
 }
 body>header #user ul li a{
@@ -75,7 +75,7 @@ body>header #user:hover ul{
     margin:0 auto 2em auto;
 }
 #wrapper aside{
-    background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
+    background-image: linear-gradient(rgb(255, 255, 255, 0.05),rgb(255, 255, 255, 0.05)), url(goldwhite.jpg);
     flex:1;
     padding:1em;
     border-radius: 1em;    
@@ -93,20 +93,23 @@ body>header #user:hover ul{
     overflow-y:  scroll;
 }
 #wrapper main article{
-    background-image: linear-gradient(rgb(255, 255, 255, 0.5),rgb(255, 255, 255, 0.5)), url(velvet_background.jpg);
+    background-image: linear-gradient(rgb(255, 255, 255, 0.05),rgb(255, 255, 255, 0.05)), url(goldwhite.jpg);
     padding:1em;
     margin-bottom: 1em ;
     border-radius: 1em;
+    color:black;
 }
 #wrapper main article h3{
     margin:0;
     padding:0;
     font-weight: normal;
     font-size:1em;
+    color:black;
 
 }
 #wrapper main article time{
     float:left;
+    color:black;
 }
 #wrapper main article address{
     text-align: right;
@@ -153,5 +156,5 @@ body>header #user:hover ul{
 }
 
 pre{
-    color:#aaa;
+    color:black;
 }
