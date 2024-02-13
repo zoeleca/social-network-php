@@ -1,14 +1,14 @@
 body{
-    background-color: rgb(230, 206, 214);
-    font-family: 'roboto';
-    color: rgba(96, 33, 46, 0.859);
+    color:black;
+    font-family: Arial;
+    background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(background.jpg);
 }
 
 a{text-decoration: none; color:rgb(234, 110, 135);}
 a:hover{text-decoration: underline; color:rgb(255, 255, 255); background-color: rgb(242, 144, 167);}
 
 body>header{
-    background-color: #ffffff58;
+    background-color: #fff;
     display:flex;
     width:80em;
     margin:0 auto 2em auto;    
@@ -21,6 +21,7 @@ body>header img{
     height:5em;
 }
 body>header #menu {
+    background-color: #fff;
     display:flex;
     width:50%;
     align-items: stretch;
@@ -55,9 +56,9 @@ body>header #user ul{
     padding:0;
     margin:0;
     margin-left:-5em;
-    background-color: #fff;
-    border: 1px solid rgb(234, 110, 135);
-
+    background-image: linear-gradient(rgb(255, 255, 255, 0.05),rgb(255, 255, 255, 0.05)), url(goldwhite.jpg);
+    border: 1px solid #99b;
+    color:black;
     z-index: 1;
 }
 body>header #user ul li a{
@@ -77,7 +78,7 @@ body>header #user:hover ul{
     margin:0 auto 2em auto;
 }
 #wrapper aside{
-    background-color: #fff;
+    background-image: linear-gradient(rgb(255, 255, 255, 0.05),rgb(255, 255, 255, 0.05)), url(goldwhite.jpg);
     flex:1;
     padding:1em;
     border-radius: 1em;    
@@ -95,20 +96,23 @@ body>header #user:hover ul{
     overflow-y:  scroll;
 }
 #wrapper main article{
-    background-color: #fff;
+    background-image: linear-gradient(rgb(255, 255, 255, 0.05),rgb(255, 255, 255, 0.05)), url(goldwhite.jpg);
     padding:1em;
     margin-bottom: 1em ;
     border-radius: 1em;
+    color:black;
 }
 #wrapper main article h3{
     margin:0;
     padding:0;
     font-weight: normal;
     font-size:1em;
+    color:black;
 
 }
 #wrapper main article time{
     float:left;
+    color:black;
 }
 #wrapper main article address{
     text-align: right;
@@ -155,33 +159,5 @@ body>header #user:hover ul{
 }
 
 pre{
-    color:#aaa;
-}
-
-header img {
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    border: 15px;
-}
-
-.btn{
-    font-size: 15px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(234, 110, 135);
-    border: 10px solid rgb(234, 110, 135) ;
-    justify-content: center;
-    align-items: right;
-    border: 10px;
-}
-
-.btn:hover{
-    background-color: rgb(234, 110, 135) ;
-    font-size: 15px;
-    color: #fff;
-    justify-content: center;
-    align-items: right;
-    border: 10px;
-    border-radius: 10px;
-    cursor: pointer;
+    color:black;
 }
