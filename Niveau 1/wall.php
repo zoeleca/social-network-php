@@ -45,10 +45,14 @@
                 </p>
             </section>
             <?php include 'followbtn.php' ?>
+            <audio controls autoplay>
+                <source src="swimming.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </aside>
         <main>
             <article>
-              <?php include 'postmessage.php'?>
+                <?php include 'postmessage.php' ?>
             </article>
             <?php
             /**
