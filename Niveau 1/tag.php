@@ -24,7 +24,7 @@
             <main class='contacts'>
                 <?php
                 // Etape 1: récupérer l'id de l'utilisateur
-                $userId = intval($_GET['user_id']);
+             //   $userId = intval($_GET['user_id']);
                 // Etape 2: se connecter à la base de donnée
                 $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
                 // Etape 3: récupérer le nom de l'utilisateur
@@ -38,7 +38,6 @@
                 while ($tag = $lesInformations->fetch_assoc()){
                     ?>
                 <article>
-                    <img src="cat.jpg" alt="blason"/>
                     <a href="tags.php?tag_id=<?php echo $tag['id']?>">
                         <h3><?php echo $tag['label'] ?></h3></a>
                     <p>Id : <?php echo $tag['id'] ?></p>
