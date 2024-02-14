@@ -14,19 +14,25 @@ if ($mysqli->connect_errno) {
 
 //check that the script received the proper inputs from the page
 if (isset($_POST['like_number'], $_POST['post_id'])) {
-// Get the post ID from the form submission
+  // Get the post ID from the form submission
   $post_id = intval($_POST["post_id"]);
 
-// Check if the user has already liked the post
+  // Check if the user has already liked the post
   $checkLikes = "SELECT * FROM likes WHERE user_id = $userId AND post_id = $post_id";
   $result = $mysqli->query($checkLikes);
 
+  $like = $result->fetch_assoc();
+  $likeId = intval($like['id']);
+
   if ($result && $result->num_rows > 0) {
     // User has already liked the post
-    echo ("Like déjà apposé");
+    $findLike = "DELETE FROM likes WHERE id = $likeId";
+    $rmvLike = $mysqli->query($findLike);
+    header("Location: " . $_SERVER['HTTP_REFERER']);
     exit;
+
   } else {
-     // Insert a new like into the database
+    // Insert a new like into the database
     $addLike = "INSERT INTO likes "
       . "(id, user_id, post_id)" . "VALUES (NULL, $userId, $post_id)";
     if (!$mysqli->query($addLike)) {
