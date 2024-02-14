@@ -10,7 +10,7 @@ a{text-decoration: none; color:rgb(234, 110, 135);}
 a:hover{text-decoration: underline; color:rgb(255, 255, 255); background-color: rgb(242, 144, 167);}
 
 body>header{
-    background-color: #ffffff58;
+    background-color: #ffffff;
     display:flex;
     width:80em;
     margin:0 auto 2em auto;    
