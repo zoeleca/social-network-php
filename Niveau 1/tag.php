@@ -38,6 +38,7 @@
                 while ($tag = $lesInformations->fetch_assoc()){
                     ?>
                 <article>
+                    
                     <a href="tags.php?tag_id=<?php echo $tag['id']?>">
                         <h3><?php echo $tag['label'] ?></h3></a>
                     <p>Id : <?php echo $tag['id'] ?></p>
