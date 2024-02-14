@@ -30,11 +30,11 @@
   <!-- debut du form pour les likes -->
   <form action="like.php" method="post">
     <input type="hidden" name="like_number" value="<?php echo $post['like_number']; ?>">
-    <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>"> 
+    <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
     <button type="submit">♥ <?php echo $post['like_number']; ?></button>
-  </button>
-</form>
-  <a href="">
+    </button>
+  </form>
+  <a href="tag.php">
     <?php echo $post['taglist'] ?>
   </a>
 </footer>
