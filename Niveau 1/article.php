@@ -34,7 +34,7 @@
     <button type="submit">♥ <?php echo $post['like_number']; ?></button>
   </button>
 </form>
-  <a href=""> 
+  <a href="tags.php?tag_id=<?php echo $post['tag_ids'] ?>">
     <?php echo $post['taglist'] ?>
   </a>
 </footer>
