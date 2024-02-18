@@ -45,8 +45,8 @@
                 </p>
             </section>
             <?php include 'followbtn.php' ?>
-            <audio controls autoplay>
-                <source src="swimming.mp3" type="audio/mpeg">
+            <audio controls >
+                <source src="swimming.mp3" autoplay="false" type="audio/mpeg"/>
                 Your browser does not support the audio element.
             </audio>
         </aside>
