@@ -56,10 +56,12 @@ if ($enCoursDeTraitement) {
 <form action="wall.php?user_id=<?php echo $userId ?>" method="post">
     <input type='hidden' name='auteur' value='<?php echo $userId ?>'>
     <dt><label for='message'></label></dt>
-    <dd><textarea name='message'>Poster un message...</textarea></dd><br>
+    <dd><textarea name='message' placeholder="Poster un message..."></textarea></dd><br>
+    <!--
     <dt><label for='tag'></label></dt>
     <input type='hidden' name='tag' value='???'>
     <dd><input name='tag' placeholder='#Ajouter un tag'></input></dd><br>
     </dl>
+-->
     <input type='submit'>
 </form>
