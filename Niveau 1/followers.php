@@ -13,7 +13,7 @@
         </header>
         <div id="wrapper">          
             <aside>
-                <img src = "picnic.jpg" alt = "Portrait de l'utilisatrice"/>
+                <img src = "img/picnic.jpg" alt = "Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes qui
@@ -42,7 +42,7 @@
                 while ($userId = $lesInformations->fetch_assoc()){
                     ?>
                 <article>
-                    <img src="cat.jpg" alt="blason"/>
+                    <img src="img/cat.jpg" alt="blason"/>
                     <a href="wall.php?user_id=<?php echo $userId['id']; ?>">
                         <h3><?php echo $userId['alias'] ?></h3>
                     </a>
