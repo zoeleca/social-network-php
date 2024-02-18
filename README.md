@@ -1,7 +1,8 @@
 # Social Network v.1 
 Group Project - 2 weeks
 This social network is a platform that allows where users to register and login. They can explore the differents pages, like posts and follow users but they can also post messages.
-![Alt website screenshot-img](Niveau 1\img\screenshot.png)
+
+![Alt website screenshot-img](screenshot.png)
 
 
 ## Tech Stack
