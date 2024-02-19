@@ -25,5 +25,5 @@ Some functions can be added such as the 'unfollow button' and the option of a ta
 
 
 ## Authors 
-Remi, Philippe and Zoe. 
+<a href='https://github.com/harfore'>Remi</a>, <a href='https://github.com/PDeslousPaoli'>Philippe</a> and <a href='https://github.com/zoeleca'>Zoe</a>. 
 Students in Ada Tech School, PARIS. 
