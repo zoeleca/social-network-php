@@ -10,7 +10,7 @@
 
 <body>
   <header>
-    <?php include 'header.php'
+    <?php include '../Components/header.php'
       ?>
   </header>
   <div id="wrapper">
@@ -32,12 +32,12 @@
             /**
              * Etape 3: récupérer le nom de l'utilisateur
              */
-            $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
-            $lesInformations = $mysqli->query($laQuestionEnSql);
-            $user = $lesInformations->fetch_assoc();
+            $SQLQuery = "SELECT * FROM users WHERE id= '$userId' ";
+            $Res = $mysqli->query($SQLQuery);
+            $user = $Res->fetch_assoc();
             //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
             ?>
-            <img src="img/picnic.jpg" alt="Portrait de l'utilisatrice" />
+            <img src="../Images/picnic.jpg" alt="Portrait de l'utilisatrice" />
             <section>
                 <h3>Présentation</h3>
                 <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
@@ -58,7 +58,7 @@
             /**
              * Etape 3: récupérer tous les messages de l'utilisatrice
              */
-            $laQuestionEnSql = "
+            $SQLQuery = "
                     SELECT posts.content, posts.created, users.alias as author_name, posts.id, posts.user_id,
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist, GROUP_CONCAT(DISTINCT tags.id) AS tag_ids
                     FROM posts
@@ -70,18 +70,16 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-      $lesInformations = $mysqli->query($laQuestionEnSql);
-      if (!$lesInformations) {
+      $Res = $mysqli->query($SQLQuery);
+      if (!$Res) {
         echo ("Échec de la requete : " . $mysqli->error);
       }
 
-      /**
-       * Etape 4: @todo Parcourir les messages et remplir correctement le HTML avec les bonnes valeurs php
-       */
-      while ($post = $lesInformations->fetch_assoc()) {
+      //display user's posts
+      while ($post = $Res->fetch_assoc()) {
         ?>
         <article>
-          <?php include 'article.php' ?>
+        <?php include '../Components/article.php' ?>
 
         </article>
       <?php } ?>

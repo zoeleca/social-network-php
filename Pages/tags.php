@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <?php include 'header.php'
+        <?php include '../Components/header.php'
         ?>
     </header>
     <div id="wrapper">
@@ -33,14 +33,11 @@
 
         <aside>
             <?php
-            /**
-             * Etape 3: récupérer le nom du mot-clé
-             */
-            $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
-            $lesInformations = $mysqli->query($laQuestionEnSql);
-            $tag = $lesInformations->fetch_assoc();
-            //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-            //  echo "<pre>" . print_r($tag, 1) . "</pre>";
+            //Get post by tag id
+            $SQLQuery = "SELECT * FROM tags WHERE id= '$tagId' ";
+            $Res = $mysqli->query($SQLQuery);
+            $tag = $Res->fetch_assoc();
+
             ?>
             <img src="img/picnic.jpg" alt="Portrait de l'utilisatrice" />
             <section>
@@ -55,10 +52,7 @@
         </aside>
         <main>
             <?php
-            /**
-             * Etape 3: récupérer tous les messages avec un mot clé donné
-             */
-            $laQuestionEnSql = "
+            $SQLQuery = "
                     SELECT posts.content,
                     posts.user_id,
                     posts.id,
@@ -77,26 +71,19 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-            $lesInformations = $mysqli->query($laQuestionEnSql);
-            if (!$lesInformations) {
+            $Res = $mysqli->query($SQLQuery);
+            if (!$Res) {
                 echo ("Échec de la requete : " . $mysqli->error);
             }
-
-            /**
-             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-             */
-            while ($post = $lesInformations->fetch_assoc()) {
-
+            //display all articles
+            while ($post = $Res->fetch_assoc()) {
             ?>
                 <article>
-                    <?php include 'article.php' ?>
+                    <?php include '../Components/article.php' ?>
                 </article>
             <?php } ?>
-
             <?php
-
             ?>
-
         </main>
     </div>
 </body>

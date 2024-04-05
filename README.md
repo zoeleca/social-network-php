@@ -2,7 +2,7 @@
 Group Project - 2 weeks
 This social network is a platform that allows where users to register and login. They can explore the differents pages, like posts and follow users but they can also post messages.
 
-![Alt website screenshot-img](screenshot.png)
+![Alt website screenshot-img](./Images/screenshot.png)
 
 
 ## Tech Stack

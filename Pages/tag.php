@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="fr">
-
 <head>
     <meta charset="utf-8">
     <title>ReSoC - Mes abonnés </title>
@@ -9,37 +8,38 @@
 </head>
 
 <body>
+
     <header>
-        <?php include 'header.php'
+        <?php include '../Components/header.php'
         ?>
     </header>
+
     <div id="wrapper">
+
         <aside>
-            <img src="img/picnic.jpg" alt="Portrait de l'utilisatrice" />
+            <img src="../Images/picnic.jpg" alt="Portrait de l'utilisatrice" />
             <section>
                 <h3>Présentation</h3>
                 <p>Sur cette page vous trouverez la liste des mots-clés. </p>
-
             </section>
         </aside>
+
+
         <main class='contacts'>
             <?php
-            // Etape 1: récupérer l'id de l'utilisateur
-            //   $userId = intval($_GET['user_id']);
-            // Etape 2: se connecter à la base de donnée
+            //DB Connection
             $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-            // Etape 3: récupérer le nom de l'utilisateur
-            $laQuestionEnSql = "
+            $SQLQuery = "
                     SELECT *
                     FROM tags
                     ";
-            $lesInformations = $mysqli->query($laQuestionEnSql);
-            // Etape 4: à vous de jouer
-            //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
-            while ($tag = $lesInformations->fetch_assoc()) {
+            $Res = $mysqli->query($SQLQuery);
+
+
+            //displaying tags label and id
+            while ($tag = $Res->fetch_assoc()) {
             ?>
                 <article>
-
                     <a href="tags.php?tag_id=<?php echo $tag['id'] ?>">
                         <h3><?php echo $tag['label'] ?></h3>
                     </a>

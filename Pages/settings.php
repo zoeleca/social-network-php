@@ -8,14 +8,14 @@
     </head>
     <body>
         <header>
-           <?php include 'header.php'
+           <?php include '../Components/header.php'
             ?>
         </header>
         <div id="wrapper" class='profile'>
 
 
             <aside>
-                <img src="img/picnic.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="../Images/picnic.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les informations de l'utilisatrice
@@ -42,7 +42,7 @@
                 /**
                  * Etape 3: récupérer le nom de l'utilisateur
                  */
-                $laQuestionEnSql = "
+                $SQLQuery = "
                     SELECT users.*, 
                     count(DISTINCT posts.id) as totalpost, 
                     count(DISTINCT given.post_id) as totalgiven, 
@@ -54,17 +54,14 @@
                     WHERE users.id = '$userId' 
                     GROUP BY users.id
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
+                $Res = $mysqli->query($SQLQuery);
+                if ( ! $Res)
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
-                $user = $lesInformations->fetch_assoc();
+                $user = $Res->fetch_assoc();
 
-                /**
-                 * Etape 4: à vous de jouer
-                 */
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer les valeurs ci-après puiseffacer la ligne ci-dessous
+                //display user info
                 ?>                
                 <article class='parameters'>
                     <h3>Mes paramètres</h3>

@@ -18,7 +18,7 @@
   </time>
 </h3>
 
-<address><a href="wall.php?user_id=<?php echo $post['user_id']; ?>">
+<address><a href="../Pages/wall.php?user_id=<?php echo $post['user_id']; ?>">
     <?php echo $post['author_name'] ?>
   </a></address>
 <div>
@@ -34,7 +34,7 @@
     <button type="submit">♥ <?php echo $post['like_number']; ?></button>
   </button>
 </form>
-  <a href="tags.php?tag_id=<?php echo $post['tag_ids'] ?>">
+  <a href="../Pages/tags.php?tag_id=<?php echo $post['tag_ids'] ?>">
     <?php echo $post['taglist'] ?>
   </a>
 </footer>
